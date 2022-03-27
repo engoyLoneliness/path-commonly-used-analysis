@@ -1,15 +1,8 @@
 const process = require('process');
 
 // 对应keyCode
-const CHAR_UPPERCASE_A = 65 /* A */,
-  CHAR_LOWERCASE_A = 97 /* a */,
-  CHAR_UPPERCASE_Z = 90 /* Z */,
-  CHAR_LOWERCASE_Z = 122 /* z */,
-  CHAR_DOT = 46 /* . */,
-  CHAR_FORWARD_SLASH = 47 /* / */,
-  CHAR_BACKWARD_SLASH = 92 /* \ */,
-  CHAR_COLON = 58 /* : */,
-  CHAR_QUESTION_MARK = 63; /* ? */
+const CHAR_DOT = 46 /* . */,
+  CHAR_FORWARD_SLASH = 47; /* / */
 
 // 路径分隔符
 function isPosixPathSeparator(code) {
@@ -97,7 +90,7 @@ function normalizeString(path, allowAboveRoot, separator, isPosixPathSeparator) 
 }
 
 const validateString = (value, name) => {
-  if (typeof value !== 'string') throw new ERR_INVALID_ARG_TYPE(name, 'string', value);
+  if (typeof value !== 'string') throw new ERROR(name, 'string', value);
 };
 
 function resolvePosix(...args) {
@@ -124,7 +117,3 @@ function resolvePosix(...args) {
   }
   return resolvedPath.length > 0 ? resolvedPath : '.';
 }
-
-// resolvePosix('./1111', '../2222'); /Users/apple/Desktop/工作文件/article/2222
-// resolvePosix('/');  for循环开关resolvedAbsolute值改变 直接返回 /
-resolvePosix('./1111', '../2222');
